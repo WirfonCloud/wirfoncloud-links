@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banjika Ngo — WirfonCloud Academy Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --blue: #0199EF;
+      --blue-dark: #0178C2;
+      --blue-pale: #E8F5FE;
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --surface: #F4F8FC;
+      --text-main: #0A0A0A;
+      --text-muted: #6B7A8D;
+      --border: #DDE5EF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--surface);
+      min-height: 100vh;
+      color: var(--text-main);
+    }
+
+    /* ─── BACKGROUND PATTERN ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(1, 153, 239, .07) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(1, 153, 239, .05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 40px 20px 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      animation: fadeUp .5s ease both
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .photo-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .photo-ring {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      border: 3px solid var(--blue);
+      padding: 3px;
+      display: block;
+    }
+
+    .photo-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue);
+      overflow: hidden;
+    }
+
+    .photo-badge {
+      position: absolute;
+      bottom: 4px;
+      right: -4px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 3px 7px;
+      border-radius: 20px;
+      white-space: nowrap;
+      border: 2px solid var(--surface);
+    }
+
+    .name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 26px;
+      color: var(--black);
+      margin-bottom: 5px;
+      letter-spacing: -.3px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 320px;
+      margin: 0 auto 14px;
+    }
+
+    .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .cred {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 4px 11px;
+    }
+
+    .cred.highlight {
+      background: var(--blue-pale);
+      border-color: rgba(1, 153, 239, .3);
+      color: var(--blue-dark);
+    }
+
+    /* ─── SOCIALS ─── */
+    .socials {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 32px;
+      animation: fadeUp .5s .1s ease both;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 16px;
+      transition: all .2s;
+    }
+
+    .social-btn:hover {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .social-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      padding-left: 2px;
+    }
+
+    /* ─── LINK CARDS ─── */
+    .links-group {
+      margin-bottom: 24px
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all .2s;
+      cursor: pointer;
+      animation: fadeUp .5s ease both;
+    }
+
+    .link-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 20px rgba(1, 153, 239, .12);
+      transform: translateY(-1px);
+    }
+
+    .link-card.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .link-card.primary:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+      box-shadow: 0 4px 20px rgba(1, 153, 239, .3);
+    }
+
+    .link-card.dark {
+      background: var(--black);
+      border-color: var(--black);
+      color: #fff;
+    }
+
+    .link-card.dark:hover {
+      background: #1a1a1a;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .2);
+    }
+
+    .link-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .link-card.primary .link-icon {
+      background: rgba(255, 255, 255, .15)
+    }
+
+    .link-card.dark .link-icon {
+      background: rgba(255, 255, 255, .1)
+    }
+
+    .link-card:not(.primary):not(.dark) .link-icon {
+      background: var(--blue-pale)
+    }
+
+    .link-body {
+      flex: 1;
+      min-width: 0
+    }
+
+    .link-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+
+    .link-card.primary .link-title,
+    .link-card.dark .link-title {
+      color: #fff
+    }
+
+    .link-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .link-card.primary .link-desc {
+      color: rgba(255, 255, 255, .75)
+    }
+
+    .link-card.dark .link-desc {
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .link-arrow {
+      font-size: 14px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform .2s;
+    }
+
+    .link-card.primary .link-arrow,
+    .link-card.dark .link-arrow {
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .link-card:hover .link-arrow {
+      transform: translateX(3px)
+    }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 20px;
+      margin-bottom: 3px;
+    }
+
+    .badge-free {
+      background: #D1FAE5;
+      color: #065F46
+    }
+
+    .badge-live {
+      background: #DBEAFE;
+      color: #1E40AF
+    }
+
+    .badge-new {
+      background: #FEF3C7;
+      color: #92400E
+    }
+
+    /* ─── PROOF STRIP ─── */
+    .proof-strip {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      animation: fadeUp .5s .3s ease both;
+    }
+
+    .proof-strip-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .proof-grads {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .proof-grad {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grad-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--blue-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .grad-info-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2
+    }
+
+    .grad-info-role {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.3
+    }
+
+    /* ─── QUOTE ─── */
+    .quote-card {
+      background: var(--blue);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 24px;
+      animation: fadeUp .5s .4s ease both;
+    }
+
+    .quote-text {
+      font-size: 14px;
+      font-style: italic;
+      color: rgba(255, 255, 255, .92);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .quote-attr {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .7)
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp .5s .5s ease both;
+    }
+
+    .footer-brand {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+
+    .footer-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .footer-url {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    /* ─── ANIMATION DELAYS ─── */
+    .link-card:nth-child(1) {
+      animation-delay: .1s
+    }
+
+    .link-card:nth-child(2) {
+      animation-delay: .15s
+    }
+
+    .link-card:nth-child(3) {
+      animation-delay: .2s
+    }
+
+    .link-card:nth-child(4) {
+      animation-delay: .25s
+    }
+
+    .link-card:nth-child(5) {
+      animation-delay: .3s
+    }
+
+    .link-card:nth-child(6) {
+      animation-delay: .35s
+    }
+
+    .link-card:nth-child(7) {
+      animation-delay: .4s
+    }
+
+    /* SVG icons */
+    .ico-yt {
+      color: #FF0000
+    }
+
+    .ico-li {
+      color: #0A66C2
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- ─── HEADER ─── -->
+    <div class="header">
+      <div class="photo-wrap">
+        <div class="photo-ring">
+          <div class="photo-img" id="photo-placeholder">
+            <!-- Replace src below with your actual photo URL -->
+            <img src="https://drive.google.com/file/d/1BFEEf3xEcPX8_0bKR1riTVM2A3UyCFfQ/view?usp=drive_link"
+              alt="Banjika Ngo" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+          </div>
+        </div>
+        <div class="photo-badge">AWS Auth. Instructor</div>
+      </div>
+
+      <div class="name">Banjika Ngo</div>
+      <div class="tagline">Founder, WirfonCloud · WirfonCloud Academy · Teaching Linux, Networking, Python and AWS Cloud
+        to African learners the Foundation First way</div>
+
+      <div class="creds">
+        <span class="cred highlight">11× AWS Certified</span>
+        <span class="cred highlight">Community Builder ×6</span>
+        <span class="cred">Verizon · IBM · Kyndryl</span>
+        <span class="cred">est. 2020</span>
+      </div>
+    </div>
+
+    <!-- ─── SOCIAL LINKS ─── -->
+    <div class="socials">
+      <a href="https://www.youtube.com/@wirfoncloud" class="social-btn" target="_blank" aria-label="YouTube">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/banjikango/" class="social-btn" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+        </svg>
+      </a>
+      <a href="https://x.com/BanjikaNgo" class="social-btn" target="_blank" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/wirfoncloud" class="social-btn" target="_blank" aria-label="Facebook">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg>
+      </a>
+      <a href="https://wa.me/message/YOUR_WHATSAPP_LINK" class="social-btn" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- ─── FREE RESOURCES ─── -->
+    <div class="links-group">
+      <div class="section-label">Free resources</div>
+
+      <a href="https://academy.wirfoncloud.com/linux-quiz" class="link-card primary" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+            <path d="M12 17h.01" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-free">Free · 5 minutes</div>
+          <div class="link-title">Linux Career Readiness Quiz</div>
+          <div class="link-desc">Find your exact starting point in IT and Cloud — 10 questions, personalised result
+          </div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a href="https://drive.google.com/file/d/1OxkkedY8RaqKszngWtpLdWVXk2d8_n4h/view?usp=sharing" class="link-card"
+        target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+            <line x1="16" y1="13" x2="8" y2="13" />
+            <line x1="16" y1="17" x2="8" y2="17" />
+            <polyline points="10 9 9 9 8 9" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-free">Free PDF</div>
+          <div class="link-title">Foundation First IT Roadmap</div>
+          <div class="link-desc">The complete path from zero to Cloud Engineer — Linux → Networking → Python → AWS</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a href="https://preview.mailerlite.io/forms/2387241/188992207671264601/share" class="link-card" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="23 7 16 12 23 17 23 7" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-free">Free · Monthly · Zoom</div>
+          <div class="link-title">Linux in 60 Minutes — Free Workshop</div>
+          <div class="link-desc">Live session with African analogies · No experience needed · Recording available</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- ─── COURSES ─── -->
+    <div class="links-group">
+      <div class="section-label">Courses — WirfonCloud Academy</div>
+
+      <a href="https://academy.wirfoncloud.com" class="link-card dark" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-live" style="background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)">Cohort
+            open now</div>
+          <div class="link-title">Linux Fundamentals</div>
+          <div class="link-desc">13 modules · LPI Linux Essentials certification · African analogies throughout</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a href="https://academy.wirfoncloud.com" class="link-card" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+            <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+            <line x1="6" y1="6" x2="6.01" y2="6" />
+            <line x1="6" y1="18" x2="6.01" y2="18" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-new">Join waitlist</div>
+          <div class="link-title">Networking Fundamentals</div>
+          <div class="link-desc">IP, DNS, routing and subnetting — so every AWS diagram finally makes sense</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+
+      <a href="https://academy.wirfoncloud.com" class="link-card" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-new">Join waitlist</div>
+          <div class="link-title">Python Fundamentals</div>
+          <div class="link-desc">Real scripts that automate the repetitive work and power your first AI tools</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- ─── BOOK A CALL ─── -->
+    <div class="links-group">
+      <div class="section-label">Talk to Banjika</div>
+
+      <a href="https://calendar.app.google/6YG4yZQX2mXwo9qr5" class="link-card primary" target="_blank">
+        <div class="link-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+        </div>
+        <div class="link-body">
+          <div class="badge-pill badge-free" style="background:rgba(255,255,255,.2);color:#fff">Free · 20 minutes ·
+            Google Meet</div>
+          <div class="link-title">Book a consultation call</div>
+          <div class="link-desc">Your Cloud career path · Team training · University partnerships</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+
+    <!-- ─── GRADUATE PROOF ─── -->
+    <div class="proof-strip">
+      <div class="proof-strip-label">WirfonCloud graduates working today</div>
+      <div class="proof-grads">
+        <div class="proof-grad">
+          <div class="grad-dot">TK</div>
+          <div>
+            <div class="grad-info-name">Tatiana Kinyuy</div>
+            <div class="grad-info-role">Platform Engineer</div>
+          </div>
+        </div>
+        <div class="proof-grad">
+          <div class="grad-dot">CZ</div>
+          <div>
+            <div class="grad-info-name">Cham Zekebweliwai</div>
+            <div class="grad-info-role">Sr. AWS Infra Eng. · CRUK</div>
+          </div>
+        </div>
+        <div class="proof-grad">
+          <div class="grad-dot">LS</div>
+          <div>
+            <div class="grad-info-name">Lilian Shulika Tata</div>
+            <div class="grad-info-role">Enterprise Architect</div>
+          </div>
+        </div>
+        <div class="proof-grad">
+          <div class="grad-dot">BM</div>
+          <div>
+            <div class="grad-info-name">Boris Mougoue</div>
+            <div class="grad-info-role">Application Manager</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);text-align:center">
+        <a href="https://www.youtube.com/@wirfoncloud" target="_blank"
+          style="font-size:12px;font-weight:700;color:var(--blue);text-decoration:none">Watch all 7 stories on YouTube
+          →</a>
+      </div>
+    </div>
+
+    <!-- ─── QUOTE ─── -->
+    <div class="quote-card">
+      <div class="quote-text">"He knows how to make the complex technological concept very easy for everyone to
+        understand."</div>
+      <div class="quote-attr">— Chi Che, Automation and Security Engineer</div>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <div class="footer">
+      <div class="footer-brand">WirfonCloud Academy</div>
+      <div class="footer-tag">We demystify IT and cloud and make it fashionable for all.</div>
+      <a href="https://academy.wirfoncloud.com" class="footer-url" target="_blank">academy.wirfoncloud.com</a>
+    </div>
+
+  </div>
+
+</body>
+
+</html>
